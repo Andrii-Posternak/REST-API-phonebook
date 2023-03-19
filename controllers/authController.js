@@ -1,7 +1,11 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const { RequestError } = require("../helpers");
 const { registerSchema, loginSchema } = require("../schemas/auth");
+require("dotenv").config();
+
+const { TOKEN_KEY } = process.env;
 
 const register = async (req, res, next) => {
   try {
@@ -49,7 +53,9 @@ const login = async (req, res, next) => {
     if (!isPasswordValid) {
       throw RequestError(401, "Email or password is wrong");
     }
-    const token = "qrqwtfq.fdqfqwf.14fdqawsfq";
+    const payload = { id: existingUser._id };
+    const token = jwt.sign(payload, TOKEN_KEY, { expiresIn: "1h" });
+    await User.findByIdAndUpdate(existingUser._id, { token });
     res.json({
       token,
       user: {
@@ -62,4 +68,35 @@ const login = async (req, res, next) => {
   }
 };
 
-module.exports = { register, login };
+const logout = async (req, res, next) => {
+  try {
+    const { _id } = req.user;
+    const existingUser = await User.findById(_id);
+    if (!existingUser) {
+      throw RequestError(401, "Not authorized");
+    }
+    await User.findByIdAndUpdate(_id, { token: "" });
+    res.status(204).json();
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getCurrentUser = async (req, res, next) => {
+  try {
+    const { _id } = req.user;
+    const existingUser = await User.findById(_id);
+    console.log("existingUser -", existingUser);
+    if (!existingUser) {
+      throw RequestError(401, "Not authorized");
+    }
+    res.json({
+      email: existingUser.email,
+      subscription: existingUser.subscription,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { register, login, logout, getCurrentUser };
