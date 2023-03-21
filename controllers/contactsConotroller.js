@@ -4,7 +4,8 @@ const { schema, schemaFavorite } = require("../schemas");
 
 const getContacts = async (req, res, next) => {
   try {
-    const result = await Contact.find();
+    const { id: owner } = req.user;
+    const result = await Contact.find({ owner });
     res.json(result);
   } catch (error) {
     res.status(500).json({ message: "Server error" });
@@ -14,11 +15,10 @@ const getContacts = async (req, res, next) => {
 const getContactById = async (req, res, next) => {
   try {
     const { contactId } = req.params;
-
-    console.log("==> before result");
-    const result = await Contact.findById(contactId);
-    console.log("==> after result", result);
-
+    const { id: owner } = req.user;
+    const result = await Contact.findOne({
+      $and: [{ _id: contactId }, { owner }],
+    });
     if (!result) {
       throw RequestError(404, "Not found");
     }
@@ -34,7 +34,8 @@ const addContact = async (req, res, next) => {
     if (error) {
       throw RequestError(400, "missing required name field");
     }
-    const result = await Contact.create(req.body);
+    const { id: owner } = req.user;
+    const result = await Contact.create({ ...req.body, owner });
     res.status(201).json(result);
   } catch (error) {
     next(error);
@@ -44,7 +45,10 @@ const addContact = async (req, res, next) => {
 const removeContact = async (req, res, next) => {
   try {
     const { contactId } = req.params;
-    const result = await Contact.findByIdAndRemove(contactId);
+    const { id: owner } = req.user;
+    const result = await Contact.findOneAndRemove({
+      $and: [{ _id: contactId }, { owner }],
+    });
     if (!result) {
       throw RequestError(404, "Not found");
     }
@@ -61,9 +65,16 @@ const updateContact = async (req, res, next) => {
       throw RequestError(400, "missing fields");
     }
     const { contactId } = req.params;
-    const result = await Contact.findByIdAndUpdate(contactId, req.body, {
-      new: true,
-    });
+    const { id: owner } = req.user;
+    const result = await Contact.findOneAndUpdate(
+      {
+        $and: [{ _id: contactId }, { owner }],
+      },
+      req.body,
+      {
+        new: true,
+      }
+    );
     if (!result) {
       res.status(404).json({ message: "Not found" });
     }
@@ -80,9 +91,16 @@ const updateStatusContact = async (req, res, next) => {
       throw RequestError(400, "missing field favorite");
     }
     const { contactId } = req.params;
-    const result = await Contact.findByIdAndUpdate(contactId, req.body, {
-      new: true,
-    });
+    const { id: owner } = req.user;
+    const result = await Contact.findOneAndUpdate(
+      {
+        $and: [{ _id: contactId }, { owner }],
+      },
+      req.body,
+      {
+        new: true,
+      }
+    );
     if (!result) {
       res.status(404).json({ message: "Not found" });
     }
