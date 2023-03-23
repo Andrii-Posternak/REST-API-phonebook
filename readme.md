@@ -25,8 +25,8 @@ This REST API uses these endpoints:
 ### Create a new user
 
 **Request:**  
-_Content-Type: application/json_  
-_Request body:_
+Content-Type: application/json  
+Request body:
 
 ```
 {
@@ -37,8 +37,8 @@ _Request body:_
 ```
 
 **Response:**  
-_Status: 201 Created_  
-_Response body:_
+Status: 201 Created  
+Response body:
 
 ```
 {
@@ -49,8 +49,8 @@ _Response body:_
 }
 ```
 
-_Status: 400 Bad Request_  
-_Response body:_
+Status: 400 Bad Request  
+Response body:
 `{
     "message": "error message"
 }`
@@ -70,37 +70,43 @@ Response body:
 ### Log in in the application
 
 **Request:**
-Content-Type: application/json
+Content-Type: application/json  
 Request body:
-`{
+
+```
+{
     "email": "example@example.com",
     "password": "example password"
-}`
+}
+```
 
-**Response:**
-Status: 200 OK
+**Response:**  
+Status: 200 OK  
 Response body:
-`{
+
+```
+{
     "token": "example token"
     "user": {
         "name": "example name",
         "email": "example@example.com"
     }
-}`
+}
+```
 
-Status: 400 Bad Request
+Status: 400 Bad Request  
 Response body:
 `{
     "message": "error message"
 }`
 
-Status: 401 Unauthorized
+Status: 401 Unauthorized  
 Response body:
 `{
     "message": "Email or password is wrong"
 }`
 
-Status: 500 Internal Server Error
+Status: 500 Internal Server Error  
 Response body:
 `{
     "message": "Server error"
