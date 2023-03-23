@@ -24,13 +24,13 @@ This REST API uses these endpoints:
 
 ### Create a new user
 
-**Request:**
-Content-Type: application/json
-Request body:
-`{
-    "name": "example name",
-    "email": "example@example.com",
-    "password": "example password"
+**Request:**  
+Content-Type: application/json  
+Request body:  
+`{    
+    "name": "example name",    
+    "email": "example@example.com",    
+    "password": "example password"    
 }`
 
 **Response:**
