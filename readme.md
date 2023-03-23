@@ -69,7 +69,7 @@ Response body:
 
 ### Log in in the application
 
-**Request:**
+**Request:**  
 Content-Type: application/json  
 Request body:
 
@@ -86,7 +86,7 @@ Response body:
 
 ```
 {
-    "token": "example token"
+    "token": "example token",
     "user": {
         "name": "example name",
         "email": "example@example.com"
@@ -114,19 +114,19 @@ Response body:
 
 ### Log out from the application
 
-**Request:**
+**Request:**  
 Headers - Authorization: "Bearer {Token}"
 
-**Response:**
+**Response:**  
 Status: 204 No Content
 
-Status: 401 Unauthorized
+Status: 401 Unauthorized  
 Response body:
 `{
     "message": "Not authorized"
 }`
 
-Status: 500 Internal Server Error
+Status: 500 Internal Server Error  
 Response body:
 `{
     "message": "Server error"
@@ -134,24 +134,27 @@ Response body:
 
 ### Get information about the current user
 
-**Request:**
+**Request:**  
 Headers - Authorization: "Bearer {Token}"
 
-**Response:**
+**Response:**  
 Status: 200 OK
 Response body:
-`{
+
+```
+{
     "name": "example name",
     "email": "example@example.com"
-}`
+}
+```
 
-Status: 401 Unauthorized
+Status: 401 Unauthorized  
 Response body:
 `{
     "message": "Not authorized"
 }`
 
-Status: 500 Internal Server Error
+Status: 500 Internal Server Error  
 Response body:
 `{
     "message": "Server error"
@@ -159,13 +162,15 @@ Response body:
 
 ### Get all user contacts
 
-**Request:**
+**Request:**  
 Headers - Authorization: "Bearer {Token}"
 
-**Response:**
+**Response:**  
 Status: 200 OK
 Response body:
-`[
+
+```
+[
     {
         "_id": "example contact id"
         "name": "example name",
@@ -176,15 +181,16 @@ Response body:
             "email": "example@example.com"
         }
     }
-]`
+]
+```
 
-Status: 401 Unauthorized
+Status: 401 Unauthorized  
 Response body:
 `{
     "message": "Not authorized"
 }`
 
-Status: 500 Internal Server Error
+Status: 500 Internal Server Error  
 Response body:
 `{
     "message": "Server error"
@@ -192,42 +198,48 @@ Response body:
 
 ### Create a new contact
 
-**Request:**
-Content-Type: application/json
-Headers - Authorization: "Bearer {Token}"
+**Request:**  
+Content-Type: application/json  
+Headers - Authorization: "Bearer {Token}"  
 Request body:
-`{
-    "name": "example name",
-    "number": "example number"
-}`
 
-**Response:**
-Status: 201 Created
-Response body:
-`{
-    "_id": "example contact id"
+```
+{
     "name": "example name",
     "number": "example number"
+}
+```
+
+**Response:**  
+Status: 201 Created  
+Response body:
+
+```
+{
+    "_id": "example contact id",
+    "name": "example name",
+    "number": "example number",
     "owner": {
         "_id": "641c6b08090d5d316b23594a",
         "name": "Annie Copeland",
         "email": "example@example.com"
     }
-}`
+}
+```
 
-Status: 400 Bad Request
+Status: 400 Bad Request  
 Response body:
 `{
     "message": "Missing required name field"
 }`
 
-Status: 401 Unauthorized
+Status: 401 Unauthorized  
 Response body:
 `{
     "message": "Not authorized"
 }`
 
-Status: 500 Internal Server Error
+Status: 500 Internal Server Error  
 Response body:
 `{
     "message": "Server error"
@@ -235,30 +247,30 @@ Response body:
 
 ### Delete contact
 
-**Request:**
-Headers - Authorization: "Bearer {Token}"
+**Request:**  
+Headers - Authorization: "Bearer {Token}"  
 Path params - contactId
 
-**Response:**
-Status: 200 OK
+**Response:**  
+Status: 200 OK  
 Response body:
 `{
     "message": "Contact deleted"
 }`
 
-Status: 401 Unauthorized
+Status: 401 Unauthorized  
 Response body:
 `{
     "message": "Not authorized"
 }`
 
-Status: 404 Not found
+Status: 404 Not found  
 Response body:
 `{
     "message": "Not found"
 }`
 
-Status: 500 Internal Server Error
+Status: 500 Internal Server Error  
 Response body:
 `{
     "message": "Server error"
@@ -266,54 +278,56 @@ Response body:
 
 ### Update an existing contact
 
-**Request:**
-Content-Type: application/json
-Headers - Authorization: "Bearer {Token}"
-Path params - contactId
+**Request:**  
+Content-Type: application/json  
+Headers - Authorization: "Bearer {Token}"  
+Path params - contactId  
 Request body:
-`{
-    "name": "example name",
-    "number": "example number"
-}`
 
-**Response:**
-Status: 200 OK
-Response body:
-`{
-    "_id": "example contact id"
+```
+{
     "name": "example name",
     "number": "example number"
+}
+```
+
+**Response:**  
+Status: 200 OK  
+Response body:
+
+```
+{
+    "_id": "example contact id",
+    "name": "example name",
+    "number": "example number",
     "owner": {
         "_id": "641c6b08090d5d316b23594a",
         "name": "Annie Copeland",
         "email": "example@example.com"
     }
-}`
+}
+```
 
-Status: 400 Bad Request
+Status: 400 Bad Request  
 Response body:
 `{
     "message": "Missing required name field"
 }`
 
-Status: 401 Unauthorized
+Status: 401 Unauthorized  
 Response body:
 `{
     "message": "Not authorized"
 }`
 
-Status: 404 Not found
+Status: 404 Not found  
 Response body:
 `{
     "message": "Not found"
 }`
 
-Status: 500 Internal Server Error
+Status: 500 Internal Server Error  
 Response body:
 `{
     "message": "Server error"
 }`
-
-```
-
-```
