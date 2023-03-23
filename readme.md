@@ -138,7 +138,7 @@ Response body:
 Headers - Authorization: "Bearer {Token}"
 
 **Response:**  
-Status: 200 OK
+Status: 200 OK  
 Response body:
 
 ```
@@ -166,7 +166,7 @@ Response body:
 Headers - Authorization: "Bearer {Token}"
 
 **Response:**  
-Status: 200 OK
+Status: 200 OK  
 Response body:
 
 ```
