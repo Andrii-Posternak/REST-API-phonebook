@@ -12,15 +12,15 @@ This REST API can be used to manage the phone book.
 
 This REST API uses these endpoints:
 
-- **POST** /api/auth/register - create a new user
-- **POST** /api/auth/login - log in in the application
-- **GET** /api/auth/logout - log out from the application
-- **GET** /api/auth/current - get information about the current user
+- **POST** `/api/auth/register` - create a new user
+- **POST** `/api/auth/login` - log in in the application
+- **GET** `/api/auth/logout` - log out from the application
+- **GET** `/api/auth/current` - get information about the current user
 
-- **GET** /api/contacts - get all user contacts
-- **POST** /api/contacts - create a new contact
-- **DELETE** /api/contacts:contactId - delete contact
-- **PUT** /api/contacts:contactId - update an existing contact
+- **GET** `/api/contacts` - get all user contacts
+- **POST** `/api/contacts` - create a new contact
+- **DELETE** `/api/contacts:contactId` - delete contact
+- **PUT** `/api/contacts:contactId` - update an existing contact
 
 ### Create a new user
 
