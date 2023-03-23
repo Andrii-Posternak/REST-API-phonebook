@@ -25,8 +25,8 @@ This REST API uses these endpoints:
 ### Create a new user
 
 **Request:**  
-Content-Type: application/json  
-Request body:
+_Content-Type: application/json_  
+_Request body:_
 
 ```
 {
@@ -36,29 +36,32 @@ Request body:
 }
 ```
 
-**Response:**
-Status: 201 Created
-Response body:
-`{
+**Response:**  
+_Status: 201 Created_  
+_Response body:_
+
+```
+{
     "user": {
         "name": "example name",
         "email": "example@example.com"
     }
-}`
+}
+```
 
-Status: 400 Bad Request
-Response body:
+_Status: 400 Bad Request_  
+_Response body:_
 `{
     "message": "error message"
 }`
 
-Status: 409 Conflict
+Status: 409 Conflict  
 Response body:
 `{
     "message": "Email in use"
 }`
 
-Status: 500 Internal Server Error
+Status: 500 Internal Server Error  
 Response body:
 `{
     "message": "Server error"
