@@ -28,11 +28,13 @@ This REST API uses these endpoints:
 Content-Type: application/json  
 Request body:
 
-````{
+````
+{
     "name": "example name",
     "email": "example@example.com",
     "password": "example password"
-}```
+}
+```
 
 **Response:**
 Status: 201 Created
