@@ -26,35 +26,37 @@ This REST API uses these endpoints:
 
 **Request:**  
 Content-Type: application/json  
-Request body:  
-`{
+Request body:
+
+````{
     "name": "example name",
     "email": "example@example.com",
     "password": "example password"
-}`
+}```
 
-**Response:**  
-Status: 201 Created  
+**Response:**
+Status: 201 Created
+Response body:
 `{
-    "user": {  
+    "user": {
         "name": "example name",
         "email": "example@example.com"
     }
 }`
 
-Status: 400 Bad Request  
+Status: 400 Bad Request
 Response body:
 `{
     "message": "error message"
 }`
 
-Status: 409 Conflict  
+Status: 409 Conflict
 Response body:
 `{
     "message": "Email in use"
 }`
 
-Status: 500 Internal Server Error  
+Status: 500 Internal Server Error
 Response body:
 `{
     "message": "Server error"
@@ -62,37 +64,38 @@ Response body:
 
 ### Log in in the application
 
-**Request:**  
-Content-Type: application/json  
-Request body:  
+**Request:**
+Content-Type: application/json
+Request body:
 `{
     "email": "example@example.com",
     "password": "example password"
 }`
 
-**Response:**  
-Status: 200 OK  
+**Response:**
+Status: 200 OK
+Response body:
 `{
     "token": "example token"
-    "user": {  
+    "user": {
         "name": "example name",
         "email": "example@example.com"
     }
 }`
 
-Status: 400 Bad Request  
+Status: 400 Bad Request
 Response body:
 `{
     "message": "error message"
 }`
 
-Status: 401 Unauthorized  
+Status: 401 Unauthorized
 Response body:
 `{
     "message": "Email or password is wrong"
 }`
 
-Status: 500 Internal Server Error  
+Status: 500 Internal Server Error
 Response body:
 `{
     "message": "Server error"
@@ -100,19 +103,19 @@ Response body:
 
 ### Log out from the application
 
-**Request:**  
+**Request:**
 Headers - Authorization: "Bearer {Token}"
 
-**Response:**  
+**Response:**
 Status: 204 No Content
 
-Status: 401 Unauthorized  
+Status: 401 Unauthorized
 Response body:
 `{
     "message": "Not authorized"
 }`
 
-Status: 500 Internal Server Error  
+Status: 500 Internal Server Error
 Response body:
 `{
     "message": "Server error"
@@ -120,23 +123,24 @@ Response body:
 
 ### Get information about the current user
 
-**Request:**  
+**Request:**
 Headers - Authorization: "Bearer {Token}"
 
-**Response:**  
-Status: 200 OK  
+**Response:**
+Status: 200 OK
+Response body:
 `{
     "name": "example name",
     "email": "example@example.com"
 }`
 
-Status: 401 Unauthorized  
+Status: 401 Unauthorized
 Response body:
 `{
     "message": "Not authorized"
 }`
 
-Status: 500 Internal Server Error  
+Status: 500 Internal Server Error
 Response body:
 `{
     "message": "Server error"
@@ -144,11 +148,12 @@ Response body:
 
 ### Get all user contacts
 
-**Request:**  
+**Request:**
 Headers - Authorization: "Bearer {Token}"
 
-**Response:**  
-Status: 200 OK  
+**Response:**
+Status: 200 OK
+Response body:
 `[
     {
         "_id": "example contact id"
@@ -162,13 +167,13 @@ Status: 200 OK
     }
 ]`
 
-Status: 401 Unauthorized  
+Status: 401 Unauthorized
 Response body:
 `{
     "message": "Not authorized"
 }`
 
-Status: 500 Internal Server Error  
+Status: 500 Internal Server Error
 Response body:
 `{
     "message": "Server error"
@@ -176,17 +181,18 @@ Response body:
 
 ### Create a new contact
 
-**Request:**  
-Content-Type: application/json  
-Headers - Authorization: "Bearer {Token}"  
-Request body:  
+**Request:**
+Content-Type: application/json
+Headers - Authorization: "Bearer {Token}"
+Request body:
 `{
     "name": "example name",
     "number": "example number"
 }`
 
-**Response:**  
-Status: 201 Created  
+**Response:**
+Status: 201 Created
+Response body:
 `{
     "_id": "example contact id"
     "name": "example name",
@@ -198,19 +204,19 @@ Status: 201 Created
     }
 }`
 
-Status: 400 Bad Request  
+Status: 400 Bad Request
 Response body:
 `{
     "message": "Missing required name field"
 }`
 
-Status: 401 Unauthorized  
+Status: 401 Unauthorized
 Response body:
 `{
     "message": "Not authorized"
 }`
 
-Status: 500 Internal Server Error  
+Status: 500 Internal Server Error
 Response body:
 `{
     "message": "Server error"
@@ -218,30 +224,30 @@ Response body:
 
 ### Delete contact
 
-**Request:**  
-Headers - Authorization: "Bearer {Token}"  
+**Request:**
+Headers - Authorization: "Bearer {Token}"
 Path params - contactId
 
-**Response:**  
-Status: 200 OK  
+**Response:**
+Status: 200 OK
 Response body:
 `{
     "message": "Contact deleted"
 }`
 
-Status: 401 Unauthorized  
+Status: 401 Unauthorized
 Response body:
 `{
     "message": "Not authorized"
 }`
 
-Status: 404 Not found  
+Status: 404 Not found
 Response body:
 `{
     "message": "Not found"
 }`
 
-Status: 500 Internal Server Error  
+Status: 500 Internal Server Error
 Response body:
 `{
     "message": "Server error"
@@ -249,19 +255,19 @@ Response body:
 
 ### Update an existing contact
 
-**Request:**  
-Content-Type: application/json  
-Headers - Authorization: "Bearer {Token}"  
-Path params - contactId  
-Request body:  
+**Request:**
+Content-Type: application/json
+Headers - Authorization: "Bearer {Token}"
+Path params - contactId
+Request body:
 `{
     "name": "example name",
     "number": "example number"
 }`
 
-**Response:**  
-Status: 200 OK  
-Response body:  
+**Response:**
+Status: 200 OK
+Response body:
 `{
     "_id": "example contact id"
     "name": "example name",
@@ -273,26 +279,27 @@ Response body:
     }
 }`
 
-Status: 400 Bad Request  
+Status: 400 Bad Request
 Response body:
 `{
     "message": "Missing required name field"
 }`
 
-Status: 401 Unauthorized  
+Status: 401 Unauthorized
 Response body:
 `{
     "message": "Not authorized"
 }`
 
-Status: 404 Not found  
+Status: 404 Not found
 Response body:
 `{
     "message": "Not found"
 }`
 
-Status: 500 Internal Server Error  
+Status: 500 Internal Server Error
 Response body:
 `{
     "message": "Server error"
 }`
+````
