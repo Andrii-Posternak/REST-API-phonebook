@@ -11,23 +11,23 @@ const register = async (req, res, next) => {
   try {
     const { error } = registerSchema.validate(req.body);
     if (error) {
-      throw RequestError(400, "missing required name field");
+      throw RequestError(400, error.message);
     }
-    const { email, password, subscription } = req.body;
+    const { name, email, password } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       throw RequestError(409, "Email in use");
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
+      name,
       email,
       password: hashedPassword,
-      subscription,
     });
     res.status(201).json({
       user: {
+        name: user.name,
         email: user.email,
-        subscription: user.subscription,
       },
     });
   } catch (error) {
@@ -39,7 +39,8 @@ const login = async (req, res, next) => {
   try {
     const { error } = loginSchema.validate(req.body);
     if (error) {
-      throw RequestError(400, "missing required name field");
+      console.log(error);
+      throw RequestError(400, error.message);
     }
     const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
@@ -59,8 +60,8 @@ const login = async (req, res, next) => {
     res.json({
       token,
       user: {
+        name: existingUser.name,
         email: existingUser.email,
-        subscription: existingUser.subscription,
       },
     });
   } catch (error) {
@@ -86,13 +87,12 @@ const getCurrentUser = async (req, res, next) => {
   try {
     const { _id } = req.user;
     const existingUser = await User.findById(_id);
-    console.log("existingUser -", existingUser);
     if (!existingUser) {
       throw RequestError(401, "Not authorized");
     }
     res.json({
+      name: existingUser.name,
       email: existingUser.email,
-      subscription: existingUser.subscription,
     });
   } catch (error) {
     next(error);

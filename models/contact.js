@@ -6,15 +6,9 @@ const contactsSchema = new Schema(
       type: String,
       required: [true, "Set name for contact"],
     },
-    email: {
+    number: {
       type: String,
-    },
-    phone: {
-      type: String,
-    },
-    favorite: {
-      type: Boolean,
-      default: false,
+      required: [true, "Number is required"],
     },
     owner: {
       type: Schema.Types.ObjectId,
