@@ -1,6 +1,6 @@
 # REST-API-phonebook
 
-This REST API can be used to manage the phone book.
+This REST API is used in conjunction with [phonebook-app](https://andrii-posternak.github.io/phonebook/) ([github](https://github.com/Andrii-Posternak/phonebook))
 
 ## Created with
 
