@@ -1,5 +1,5 @@
 {
-  "name": "REST-API-contacts",
+  "name": "rest-api-phonebook",
   "version": "0.0.0",
   "private": true,
   "scripts": {
