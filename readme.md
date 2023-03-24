@@ -10,7 +10,7 @@ This REST API is used in conjunction with [phonebook-app](https://andrii-postern
 
 ## Usage
 
-Base URL: https://phonebook-api-kery.onrender.com/
+Base URL: `https://phonebook-api-kery.onrender.com/`
 
 This REST API uses these endpoints:
 
