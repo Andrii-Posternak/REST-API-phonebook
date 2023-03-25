@@ -10,6 +10,13 @@ This REST API is used in conjunction with [phonebook-app](https://andrii-postern
 
 ## Usage
 
+To run on localhost use the following commands:
+
+- `npm start` - start server in production mode
+- `npm run start:dev` - start server in development mode
+- `npm run lint` - run a code check execution with eslint
+- `npm run lint:fix` - run a code check run with eslint with automatic fixes for simple errors
+
 Base URL: `https://phonebook-api-kery.onrender.com/`
 
 This REST API uses these endpoints:
